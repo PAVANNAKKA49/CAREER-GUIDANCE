@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Image & Info Flow</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background-color: #f0f0f0;
+      padding: 40px;
+    }
+
+    .section {
+      display: flex;
+      align-items: center;
+      margin: 30px 0;
+    }
+
+    .section.reverse {
+      flex-direction: row-reverse;
+    }
+
+    .image-container {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      overflow: hidden;
+      margin: 0 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      flex-shrink: 0;
+    }
+
+    .image-container img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .info {
+      background-color: #d4e3f3;
+      padding: 20px 40px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #333;
+      clip-path: polygon(0 0, 90% 0, 100% 50%, 90% 100%, 0 100%, 10% 50%);
+      min-width: 250px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="section">
+    <div class="image-container">
+      <img src="static/images/image1.jpg" alt="Image 1">
+    </div>
+    <div class="info">Get expert suggestions on improving your resume to match industry standards and increase your chances of landing a job.</div>
+  </div>
+
+  <div class="section reverse">
+    <div class="image-container">
+      <img src="static/images/image2.jpg" alt="Image 2">
+    </div>
+    <div class="info">Info 2 goes here</div>
+  </div>
+
+  <div class="section">
+    <div class="image-container">
+      <img src="static/images/image3.jpg" alt="Image 3">
+    </div>
+    <div class="info">Info 3 goes here</div>
+  </div>
+
+  <div class="section reverse">
+    <div class="image-container">
+      <img src="static/images/image4.jpg" alt="Image 4">
+    </div>
+    <div class="info">Info 4 goes here</div>
+  </div>
+
+  <div class="section">
+    <div class="image-container">
+      <img src="static/images/image5.jpg" alt="Image 5">
+    </div>
+    <div class="info">Info 5 goes here</div>
+  </div>
+
+</body>
+</html>

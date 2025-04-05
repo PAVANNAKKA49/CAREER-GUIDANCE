@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us - AI Resume Screening Tool</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            background-color: #f0f4f8; /* Light background for better contrast */
+            color: #333;
+        }
+
+        .navbar {
+            background-color: #4B0082; /* Navigation bar color */
+            padding: 50px;
+            text-align: center;
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-size: 2em;
+        }
+
+        .navbar a:hover {
+            text-decoration: underline;
+        }
+
+        .contact-container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-container h2 {
+            color: #4B0082;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 1em;
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing of the textarea */
+        }
+
+        .form-group button {
+            background-color: #4B0082;
+            color: #fff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .form-group button:hover {
+            background-color: #4B0082; /* Darker shade on hover */
+        }
+
+        .contact-info {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .contact-info h3 {
+            margin-bottom: 10px;
+            color: #4B0082;
+        }
+
+        .contact-info p {
+            margin: 5px 0;
+            color: #555;
+        }
+
+        .faq {
+            margin-top: 30px;
+        }
+
+        .faq h3 {
+            color: #4B0082;
+            margin-bottom: 10px;
+        }
+
+        .faq-item {
+            background-color: #f5f8fa;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+        }
+
+        .social-media {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .social-media a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #4B0082;
+            font-size: 1.2em;
+        }
+
+        .map-container {
+            margin-top: 30px;
+        }
+
+        iframe {
+            width: 100%;
+            height: 300px;
+            border: 0;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <a href="/">Home</a>
+    <a href="/Services">services</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+</div>
+
+<div class="contact-container">
+    <h2>Contact Us</h2>
+
+    <form action="#" method="POST">
+        <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" name="message" rows="5" required></textarea>
+        </div>
+        <div class="form-group">
+            <button type="submit">Send Message</button>
+        </div>
+    </form>
+
+    <div class="contact-info">
+        <h3>Contact Information</h3>
+        <p><strong>Email:</strong> info@pavannakka49.com</p>
+        <p><strong>Phone:</strong> 9948794836</p>
+        <p><strong>Address:</strong> Singarayakonda, Ongole, Andhra Pradesh</p>
+    </div>
+
+    <div class="faq">
+        <h3>Frequently Asked Questions</h3>
+        <div class="faq-item">
+            <strong>How can I choose the right career path?</strong>
+            <p>Our tool provides career assessments and guidance based on your skills, interests, and future job trends.</p>
+          </div>
+          <div class="faq-item">
+            <strong>What resources are available for skill development?</strong>
+            <p>We offer recommendations for online courses, certifications, and training programs to enhance your skills.</p>
+          </div>
+          <div class="faq-item">
+            <strong>How can I prepare for job applications?</strong>
+            <p>Our platform provides resume-building tools, job recommendations, and interview preparation resources.</p>
+          </div>
+
+    <div class="social-media">
+        <h3>Follow Us</h3>
+        <a href="https://instagram.com/im_mr_pavan_kumar" target="_blank">Instagram</a>
+        <a href="https://linkedin.com/im_mr_pavan_kumar" target="_blank">LinkedIn</a>
+        <a href="https://facebook.com/im_mr_pavan_kumar" target="_blank">Facebook</a>
+    </div>
+
+    <div class="map-container">
+        <h3>Find Us Here</h3>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d61410.58806447942!2d80.05042607455267!3d15.820027344226119!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a5b53e1dca27043%3A0xb6f64e57e2d9a8ab!2sQIS%20College%20of%20Engineering!5e0!3m2!1sen!2sin!4v1693371120145!5m2!1sen!2sin" 
+                allowfullscreen="" loading="lazy"></iframe>
+    </div>
+</div>
+
+<script>
+function initMap() {
+    const qiscLocation = { lat: 15.8383, lng: 80.0528 }; // Coordinates for QIS College
+    const map = new google.maps.Map(document.getElementById("map"), {
+        zoom: 15,
+        center: qiscLocation,
+    });
+    const marker = new google.maps.Marker({
+        position: qiscLocation,
+        map: map,
+    });
+}
+</script>
+<script async
+    src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&callback=initMap">
+</script>
+</body>
+</html>

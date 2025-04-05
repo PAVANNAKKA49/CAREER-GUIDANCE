@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career Guidance for job seekers to make informed career choices.">
+  <title>Students - Career Guidance</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.0/mermaid.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var ctx = document.getElementById('myChart');
+      if (ctx) {
+          var chart = new Chart(ctx.getContext('2d'), {
+              type: 'pie',
+              data: {
+                  labels: ['Matched Skills', 'Missing Skills'],
+                  datasets: [{
+                      data: [0, 100],
+                      backgroundColor: ['#28a745', '#dc3545']
+                  }]
+              },
+              options: {
+                  responsive: true,
+                  maintainAspectRatio: false
+              }
+          });
+  
+          document.getElementById('upload-btn').addEventListener('click', function(event) {
+              const fileInput = document.getElementById('resume-upload');
+              const jobTitleInput = document.getElementById('job-title');
+  
+              if (fileInput.files.length === 0 || jobTitleInput.value.trim() === '') {
+                  alert('Please provide a job title and select a file.');
+                  return;
+              }
+  
+              const formData = new FormData();
+              formData.append('resume', fileInput.files[0]);
+              formData.append('job', jobTitleInput.value.trim());
+  
+              fetch('/upload', {
+                  method: 'POST',
+                  body: formData
+              })
+              .then(response => response.json())
+              .then(data => {
+                  if (data.score !== undefined) {
+                      document.getElementById('score-display').textContent = `ATS Score: ${data.score.toFixed(2)}%`;
+                      document.getElementById('matched-skills').textContent = `Matched Skills: ${data.matched_skills.join(', ')}`;
+                      document.getElementById('unmatched-skills').textContent = `Unmatched Skills: ${data.unmatched_skills.join(', ')}`;
+  
+                      // Update Pie Chart
+                      chart.data.datasets[0].data = [data.score, 100 - data.score];
+                      chart.update();
+  
+                      // Display Learning Resources
+                      let learningHTML = "<p><strong>Learning Resources:</strong></p><ul>";
+                      for (let skill in data.learning_resources) {
+                          learningHTML += `<li><strong>${skill}:</strong> 
+                                           <a href="${data.learning_resources[skill].website}" target="_blank">Website</a> | 
+                                           <a href="${data.learning_resources[skill].youtube}" target="_blank">YouTube</a></li>`;
+                      }
+                      learningHTML += "</ul>";
+                      document.getElementById("learning_resources").innerHTML = learningHTML;
+                  } else {
+                      alert(`Error: ${data.error}`);
+                  }
+              })
+              .catch(error => {
+                  console.error('Error:', error);
+                  alert('An error occurred while uploading the file.');
+              });
+          });
+      } else {
+          console.error("Chart element not found.");
+      }
+  });
+  
+</script>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%; /* Makes the table take full width of the container */
+      border-collapse: collapse;
+      font-size: 18px; /* Increases text size */
+  }
+  
+  th, td {
+      padding: 12px; /* Adds more spacing inside cells */
+      border: 1px solid black;
+      text-align: left;
+  }
+  
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f4f6;
+      color: #333;
+      text-align: center;
+    }
+    .video-container {
+      margin-top: 20px;
+      text-align: center;
+  }
+  iframe {
+      width: 560px;
+      height: 315px;
+  }
+
+    header {
+      background-color: #4B0082;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .roadmap-container {
+      display: flex;
+    
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 200%;
+      font-size: 1.5em; /* Keeps elements in a single horizontal line */
+    }
+    
+    
+    
+
+    .ambition-img {
+      max-width: 500px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+    .details-container {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+  }
+  
+  .details-container h3 {
+      color: #4a90e2;
+      margin-bottom: 10px;
+  }
+  
+  .details-container ul {
+      list-style: disc;
+      margin-left: 20px;
+  }
+  .testimonial-section {
+    background-color: #0a1633; /* Dark Blue */
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.testimonial-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.testimonial-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.testimonial-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.testimonial-video iframe {
+    border-radius: 8px;
+}
+.testimonials {
+  text-align: center;
+  padding: 40px;
+  background: #f8f9fa;
+}
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.testimonial-card {
+  background: #004080;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+}
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.vision-mission {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.vision, .mission {
+  flex: 1;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/*meeting*/
+
+.meeting-section {
+  width: 100%;  /* Full width */
+  background: #4B0082;  /* Dark purple */
+  padding: 20px 0;  /* Spacing */
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+.meeting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.meeting-container img {
+  width: 120px; /* Increased icon size */
+  height: 120px;
+}
+.meeting-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.meeting-button:hover {
+  background: #218838;
+}
+  footer {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      font-size: 0.8em;
+    }
+    /* for add resume box*/
+    .container {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        max-width: 600px;
+        width: 100%;
+        padding: 20px;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .container::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 120%;
+        height: 120%;
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0.3));
+        transition: all 0.3s ease-in-out;
+        transform: rotate(-30deg);
+        z-index: -1;
+    }
+
+    .container:hover::before {
+        transform: rotate(0deg);
+        background: radial-gradient(circle, rgba(0, 123, 255, 0.1), rgba(0, 123, 255, 0.5));
+    }
+
+    h1 {
+        color: #007bff;
+        margin-bottom: 20px;
+    }
+
+    input[type="file"], input[type="text"] {
+        display: block;
+        margin: 10px auto;
+        padding: 10px;
+        border-radius: 6px;
+        border: 1px solid #dee2e6;
+        width: calc(100% - 22px);
+        box-sizing: border-box;
+    }
+
+    .upload-btn {
+        background-color: #007bff;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        margin: 10px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .upload-btn:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+    }
+
+    .upload-label {
+        display: inline-block;
+        background-color: #28a745;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+    .upload-label:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+    }
+
+    .back-button {
+        display: inline-block;
+        background-color: #6c757d;
+        color: white;
+        border: none;
+        padding: 12px 20px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 16px;
+        text-decoration: none;
+        transition: background-color 0.3s, transform 0.2s;
+        margin-top: 20px;
+    }
+
+    .back-button:hover {
+        background-color: #5a6268;
+        transform: scale(1.05);
+    }
+
+    .instructions, .output {
+      text-align: center;
+      margin: 20px auto;
+      width: 60%;
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  }
+
+  #chart-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 20px;
+  }
+
+  ul {
+      list-style-type: none;
+      padding: 0;
+  }
+
+  ul li {
+      margin: 10px 0;
+  }
+    .warning {
+        color: #dc3545;
+        font-weight: bold;
+    }
+
+    #score-display, #matched-skills, #unmatched-skills {
+        margin-top: 20px;
+        font-size: 18px;
+        color: #007bff;
+    }
+
+    #chart-container {
+        width: 100%;
+        height: 300px;
+        align-items: center;
+        justify-content: center;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Career Guidance for Students</h1>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/Services">Services</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+  </div>
+</header>
+<div class="testimonial-section">
+  <h2>Importance of Career Guidance </h2>
+  <p>As students transition from high school to college or university, the question of what career path to follow looms large. Choosing a career can be overwhelming, especially if students are unsure of their strengths, interests, and skills. That’s where career guidance comes in. Career guidance is a process that helps students identify their strengths, interests, and skills and explore potential career paths. This blog delves into the importance of career guidance for students and how it can help them make informed decisions about their future</p>
+
+  <div class="testimonial-content">
+     
+      <div class="testimonial-video">
+          <iframe width="500" height="280" src="https://www.youtube.com/embed/qaCBy1PvzPk" 
+              title="Career Success Stories" frameborder="0" allowfullscreen></iframe>
+      </div>
+  </div>
+</div>
+<div class="container">
+    <h1>Add Your Resume</h1>
+    
+    <form id="resume-form" enctype="multipart/form-data">
+        <select id="job-title" name="job">
+            <option value="">Select Job Title</option>
+            <option value="data_scientist">DATA SCIENTIST</option>
+            <option value="software_engineer">SOFTWARE ENGINEER</option>
+            <option value="administrative_assistant">ADMINISTRATIVE ASSISTANT</option>
+            <option value="web_developer">WEB DEVELOPER</option>
+            <option value="aws_cloud_engineer">AWS CLOUD ENGINEER</option>
+        </select>
+        <label for="resume-upload" class="upload-label">Choose File</label>
+        <input type="file" id="resume-upload" name="resume" accept=".pdf,.jpg,.jpeg" />
+        <button type="button" id="upload-btn" class="upload-btn">Upload</button>
+    </form>
+    
+    <a href="/" class="back-button">Back to Home</a>
+</div> 
+<div class="instructions">
+  <h2>How to Upload Your Resume</h2>
+  <ul>
+      <li>Enter the job title you are applying for just without spacing by underscore (AS SHOWN IN TABLE).</li>
+      <li>Click the "Choose File" button to select your resume file.</li>
+      <li>Ensure your resume is in PDF, JPG, or JPEG format.</li>
+      <li>Click the "Upload" button to complete the process.</li>
+  </ul>
+</div>
+
+<div class="output">
+  <!-- Score display -->
+  <div id="score-display"></div>
+  <div id="matched-skills"></div>
+  <div id="unmatched-skills"></div>
+  <div id="learning_resources"></div>
+
+  <!-- Chart container -->
+  <div id="chart-container">
+      <canvas id="myChart"></canvas>
+  </div>
+</div>
+</div>
+<div class="meeting-section">
+    <div class="meeting-container">
+        <img src="static/images/googlemeet.png" alt="Google Meet">
+        <p>Join the meeting if you have doubts (6:00 PM - 8:00 PM).If any issues cotact us to our phone no: 9948794836</p>
+        <a href="https://meet.google.com/your-meeting-link" target="_blank" class="meeting-button">Join Meeting</a>
+    </div>
+  </div>
+  <section class="testimonials">
+    <h2>What Our Clients Say</h2>
+    <div class="testimonial-container">
+        <div class="testimonial-card">
+            <img src="static/images/like-picaai.png" alt="Client 1">
+            <h3>MOHAMMAD LIKE</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>I'm LIKE, a recent graduate with two years of work experience, sharing insights about my career transition.</p>
+        </div>
+        <div class="testimonial-card">
+            <img src="static/images/neeraj-picaai.png" alt="Client 2">
+            <h3>CH NEERAJ</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>I found guidance in navigating career confusion through expert counseling. Assessments were smooth and insightful.</p>
+        </div>
+        <div class="testimonial-card">
+            <img src="static/images/prudhvi.jpg" alt="Client 3">
+            <h3>L PRUDHVI</h3>
+            <p>⭐⭐⭐⭐⭐</p>
+            <p>This website helped me identify strengths and growth areas, offering valuable insights for my professional journey.</p>
+        </div>
+    </div>
+  </section>
+  <section class="vision-mission-section">
+    <div class="container">
+        <div class="vision-mission">
+            <div class="vision">
+                <img src="static/images/vision1.jpg" alt="Vision Icon">
+                <h3>VISION</h3>
+                <p>To help every student and industry executive make the right decision pertaining to educational and professional career choices through a scientifically driven but empathetically addressed methodology aimed at long-term career success and happiness.</p>
+            </div>
+            <div class="mission">
+                <img src="static/images/mission.jpg" alt="Mission Icon">
+                <h3>MISSION</h3>
+                <p>To create an impact on the lives of at least 10 million individuals in the next 10 years, by creating value in their academic and professional endeavors by serving them through scientific counseling and guidance.</p>
+            </div>
+        </div>
+    </div>
+  </section>
+  <footer>
+    <p>Contact us at: career@guidance.com</p>
+  </footer>
+  
+  </body>
+  </html>
+  
+</body>
+</html>

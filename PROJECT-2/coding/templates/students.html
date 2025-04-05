@@ -1,0 +1,1217 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career Guidance for Students to make informed career choices.">
+  <title>Students - Career Guidance</title>
+  
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/mermaid/10.2.0/mermaid.min.js"></script>
+  
+  <script>
+    mermaid.initialize({ startOnLoad: false });
+
+    function generateRoadmap() {
+      const ambition = document.getElementById("ambition").value.trim().toLowerCase();
+      const roadmapDiv = document.getElementById("roadmap");
+      const ambitionImageDiv = document.getElementById("ambitionImage");
+      const ambitionDetailsDiv = document.getElementById("ambitionDetails"); // New div for details
+      const ambitionDetailDiv = document.getElementById("ambitionDetail");
+      roadmapDiv.innerHTML = ""; // Clear previous roadmap
+      ambitionImageDiv.innerHTML = ""; // Clear previous image
+      ambitionDetailsDiv.innerHTML = ""; // Clear previous details
+      ambitionDetailDiv.innerHtml="";
+  
+      // Career Roadmaps
+      const roadmaps = {
+          "software engineer": [
+              " Complete 10+2 with Science & Mathematics",
+              " Pursue a Bachelor's in Computer Science",
+              " Learn programming languages (Python, Java, C++)",
+              " Work on projects & build a portfolio",
+              " Get internships & industry experience",
+              " Apply for software development roles"
+          ],
+          "doctor": [
+              "Complete 10+2 with Biology, Physics, Chemistry",
+              "Crack medical entrance exams",
+              "Pursue an MBBS degree",
+              "Complete an internship at a hospital",
+              "Specialize in a field (e.g., Cardiology, Neurology)",
+              "Start medical practice or work in a hospital"
+          ],
+          "ips": [
+        "Complete 10+2 in any stream",
+        "Pursue a Bachelor's degree in any discipline",
+        "Prepare for and crack the UPSC Civil Services Examination",
+        "Undergo training at Sardar Vallabhbhai Patel National Police Academy",
+        "Serve as an IPS officer in different capacities"
+    ],
+    "ias": [
+        "Complete 10+2 in any stream",
+        "Pursue a Bachelor's degree in any discipline",
+        "Prepare for and crack the UPSC Civil Services Examination",
+        "Undergo training at Lal Bahadur Shastri National Academy of Administration",
+        "Serve as an IAS officer in administrative roles"
+    ],
+    "teacher": [
+        "Complete 10+2 with relevant subjects",
+        "Pursue a Bachelor's degree (B.Ed for school teachers, or relevant degree for college professors)",
+        "Qualify for Teacher Eligibility Test (TET) or UGC-NET for higher education",
+        "Apply for government teaching positions",
+        "Undergo teacher training and join as a government teacher"
+    ],
+    "bank manager": [
+    "Complete 10+2 with Commerce or Science",
+    "Pursue a Bachelor's degree (B.Com, BBA, or related field)",
+    "Develop financial and management skills",
+    "Gain experience in banking as a clerk or assistant",
+    "Prepare for IBPS PO, SBI PO, or RBI Grade B exams",
+    "Get promoted to managerial positions"
+],
+
+"army": [
+    "Complete 10+2 with any stream",
+    "Prepare for NDA or CDS entrance exams",
+    "Undergo physical and medical fitness tests",
+    "Join the Indian Army through NDA/CDS",
+    "Complete rigorous military training",
+    "Specialize in Infantry, Artillery, or Engineering Corps"
+],
+
+"pilot": [
+    "Complete 10+2 with Science (PCM)",
+    "Enroll in a flight school for CPL (Commercial Pilot License)",
+    "Pass DGCA medical and written exams",
+    "Gain flight experience through training programs",
+    "Work as a co-pilot under senior guidance",
+    "Qualify for captain roles in airlines or defense services"
+],
+
+"navy": [
+    "Complete 10+2 with Science (PCM)",
+    "Clear NDA/CDS exam to enter Indian Navy",
+    "Undergo naval officer training at INA",
+    "Pursue a Bachelor's in Naval Engineering (if technical role)",
+    "Train in navigation, warfare, or logistics",
+    "Get commissioned into various naval branches"
+],
+
+"rail pilot": [
+    "Complete 10+2 with Science (PCM preferred)",
+    "Pursue a Diploma or Degree in Mechanical/Electrical Engineering",
+    "Apply for RRB ALP (Assistant Loco Pilot) Exam",
+    "Join as an Assistant Loco Pilot (ALP)",
+    "Gain experience and training in train operations",
+    "Get promoted to Senior Loco Pilot"
+],
+
+"engine manager": [
+    "Complete 10+2 with Science (PCM)",
+    "Pursue a B.Tech in Mechanical or Electrical Engineering",
+    "Gain experience in railway engine maintenance",
+    "Apply for RRB SSE (Senior Section Engineer) Exam",
+    "Work in locomotive engine management",
+    "Advance into railway operations leadership"
+],
+
+"station manager": [
+    "Complete 10+2 with any stream",
+    "Pursue a Bachelor's in Business or Railway Management",
+    "Gain experience in railway operations",
+    "Clear RRB SM (Station Master) Exam",
+    "Oversee station administration & staff",
+    "Manage railway schedules and passenger services"
+],
+
+"railway panel manager": [
+    "Complete 10+2 with any stream",
+    "Pursue a Bachelor's in Management or Transport Studies",
+    "Gain experience in railway administration",
+    "Clear RRB NTPC (Non-Technical Popular Categories) Exam",
+    "Oversee railway governance and planning",
+    "Manage budgeting, scheduling, and safety policies"
+],
+
+"ticket checker": [
+    "Complete 10+2 with any stream",
+    "Develop customer service and communication skills",
+    "Prepare for RRB TC (Ticket Collector) Exam",
+    "Join as a Ticket Collector in railways",
+    "Ensure passenger tickets are valid",
+    "Advance to higher administrative roles"
+],
+
+"electric site manager": [
+    "Complete 10+2 with Science (PCM)",
+    "Pursue a Diploma or B.Tech in Electrical Engineering",
+    "Gain experience in power distribution & railway electrification",
+    "Prepare for RRB JE (Junior Engineer) Exam",
+    "Oversee electrical safety and infrastructure maintenance",
+    "Advance to senior railway engineering positions"
+],
+"assistant professor": [
+    "Complete 10+2 in relevant stream (Science, Commerce, Arts based on interest)",
+    "Pursue a Bachelor's degree (B.Sc., B.A., B.Com., B.Tech, etc.)",
+    "Obtain a Master’s degree (M.Sc., M.A., M.Com., M.Tech, etc.)",
+    "Qualify in UGC-NET, SET, or GATE (for engineering)",
+    "Gain experience as a Lecturer or Teaching Assistant",
+    "Pursue a Ph.D. for better career opportunities",
+    "Apply for Assistant Professor positions at universities"
+],
+
+"professor": [
+    "Complete 10+2 in relevant stream",
+    "Earn a Bachelor's degree (B.Sc., B.A., B.Com., B.Tech, etc.)",
+    "Pursue a Master’s degree in the chosen specialization",
+    "Qualify UGC-NET, SET, or GATE (for engineering fields)",
+    "Gain teaching experience as an Assistant Professor",
+    "Complete a Ph.D. and publish research papers",
+    "Apply for Associate Professor roles with 8-10 years of experience",
+    "Advance to full Professor with significant research & teaching experience"
+]
+
+
+      };
+  
+      // Images for ambitions
+      const images = {
+          "software engineer": "static/images/software.jpeg",
+          "doctor": "static/doctor.jpg",
+          "ias": "static/images/ias.jpg",
+          "ips": "static/images/ips.jpg",
+          "teacher": "static/images/teacher.jpg",
+          "bank manager": "static/images/bankmanager.jpg",
+          "army": "static/images/army.jpg",
+          "pilot": "static/images/pilot.jpg",
+          "rail pilot": "static/images/rail-pilot.jpg",
+          "engine manager": "static/images/engine-manager.jpeg",
+          "station manager": "static/images/station-manager.jpg",
+          "railway panel manager": "static/images/railway-panel.jpg",
+          "ticket checkerr": "static/images/tc.jpg",
+          "electric site manager": "static/images/electric-sitemanager.jpg",
+          "assistant professor": "static/images/Professor1.jpg",
+          "professor": "static/images/professor2.jpeg"
+      };
+      // videos
+      const videos = {
+        "software engineer": "https://www.youtube.com/embed/avdDEZCcluo",
+        "doctor": "https://www.youtube.com/embed/0f43HWAQjuE",
+        "ias": "https://www.youtube.com/embed/ceJKkmkngRY",
+        "ips": "https://www.youtube.com/embed/SmoOTfTjLUI",
+        "teacher": "https://www.youtube.com/embed/VIDEO_ID_TEACHER",
+        "bank manager": "https://www.youtube.com/embed/umyYHZjEe5E",
+        "army": "https://www.youtube.com/embed/4FTnzgP7lD8",
+        "pilot": "https://www.youtube.com/embed/tqccbcYMZoU",
+        "rail pilot": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "engine manager": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "station manager": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "railway panel manager": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "ticket checkerr": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "electric site manager": "https://www.youtube.com/embed/XFHO5N8PsjM",
+        "assistant professor": "https://www.youtube.com/embed/vWL4UbAz6wM",
+        "professor": "https://www.youtube.com/embed/vWL4UbAz6wM"
+    };
+  
+      // Detailed Information
+      const details = {
+        "software engineer": `
+            <h3>Education Path:</h3>
+            <p>In Intermediate (10+2): Choose MPC (Mathematics, Physics, Chemistry).</p>
+            <p>Entrance Exam: JEE, EAMCET, BITSAT, etc.</p>
+            <h3>Specializations:</h3>
+            <ul>
+                <li>Artificial Intelligence</li>
+                <li>Cybersecurity</li>
+                <li>Software Development</li>
+                <li>Web Development</li>
+            </ul>
+        `,
+        "doctor": `
+            <h3>Education Path:</h3>
+            <p>In Intermediate (10+2): Choose BiPC (Biology, Physics, Chemistry).</p>
+            <p>Entrance Exam: NEET, AIIMS, JIPMER.</p>
+            <h3>Specializations:</h3>
+            <ul>
+                <li><b>Cardiology</b> - Focuses on the heart and blood vessels.</li>
+                <li><b>Neurology</b> - Deals with the brain, spinal cord, and nerves.</li>
+                <li><b>Dermatology</b> - Focuses on skin, hair, and nails.</li>
+                <li><b>Orthopedics</b> - Concerns bones, joints, ligaments, and muscles.</li>
+            </ul>
+        `,
+        "ips": `
+            <h3>Education Path:</h3>
+            <p>In Intermediate (10+2): Any stream.</p>
+            <p>Degree: Bachelor's degree in any discipline.</p>
+            <p>Entrance Exam: UPSC Civil Services Examination.</p>
+            <h3>Training:</h3>
+            <p>Selected candidates undergo training at the Sardar Vallabhbhai Patel National Police Academy.</p>
+        `,
+        "ias": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Any stream.</p>
+        <p>Degree: Bachelor's degree in any discipline.(3-4 years)</p>
+        <p>Entrance Exam: <a href="https://upsc.gov.in/" target="_blank" style="color:blue; text-decoration:underline;">UPSC Civil Services Examination</a>.UPSC Civil Services Examination:
+This is the exam you must pass. It consists of three stages:
+<ul><li>Preliminary Examination </li>
+<li>Main Examination </li>
+<li>Personality Test (Interview)</li></ul></p>
+<p>So, from the point of starting your graduation, to completing the training, it can take anywhere from 6 years, to an indefinite amount of time, depending on how many attempts it takes to pass the UPSC exam.</p>
+        <h3>Training:</h3>
+        <p>Selected candidates undergo training at the Lal Bahadur Shastri National Academy of Administration.</p>
+    `,
+        "teacher": `
+            <h3>Education Path:</h3>
+            <p>In Intermediate (10+2): Choose relevant subjects based on the teaching level.</p>
+            <p>Degree: Bachelor's degree (B.Ed for school teachers, UGC-NET for college professors).</p>
+            <p>Entrance Exam: TET, CTET, UGC-NET (based on the level of teaching).</p>
+            <h3>Training:</h3>
+            <p>Complete teacher training and apply for government teaching positions.</p>
+        `,
+        "bank manager": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Commerce or Science with Mathematics.</p>
+        <p>Higher Education: B.Com, BBA, or any Bachelor's degree.</p>
+        <p>Entrance Exam: IBPS PO, SBI PO, RBI Grade B.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Retail Banking</li>
+            <li>Corporate Banking</li>
+            <li>Investment Banking</li>
+            <li>Risk Management</li>
+        </ul>
+    `,
+
+    "army": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Any Stream.</p>
+        <p>Entry Path: NDA (National Defence Academy) or Direct Entry.</p>
+        <p>Higher Education: B.Sc/B.Tech (For technical roles).</p>
+        <p>Entrance Exam: NDA, CDS, AFCAT.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Infantry</li>
+            <li>Artillery</li>
+            <li>Engineering Corps</li>
+            <li>Medical Corps</li>
+        </ul>
+    `,
+
+    "pilot": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose MPC (Mathematics, Physics, Chemistry).</p>
+        <p>Higher Education: B.Sc Aviation, CPL (Commercial Pilot License).</p>
+        <p>Entrance Exam: IGRUA, NDA (for Air Force), DGCA exams.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Commercial Pilot</li>
+            <li>Fighter Pilot</li>
+            <li>Helicopter Pilot</li>
+            <li>Cargo Pilot</li>
+        </ul>
+    `,
+
+    "navy": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose MPC (Mathematics, Physics, Chemistry).</p>
+        <p>Higher Education: B.Tech in Naval Architecture, Mechanical or Marine Engineering.</p>
+        <p>Entry Path: NDA (for Officers), Indian Naval Academy.</p>
+        <p>Entrance Exam: NDA, CDS, SSC (Short Service Commission).</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Naval Engineering</li>
+            <li>Submarine Warfare</li>
+            <li>Navigation & Logistics</li>
+            <li>Maritime Security</li>
+        </ul>
+    `,
+
+    "rail pilot": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Science (PCM preferred).</p>
+        <p>Higher Education: Diploma or Degree in Mechanical/Electrical Engineering.</p>
+        <p>Entry Path: RRB ALP (Assistant Loco Pilot Exam).</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>High-Speed Train Pilot</li>
+            <li>Freight Train Pilot</li>
+            <li>Metro Train Pilot</li>
+            <li>Passenger Train Pilot</li>
+        </ul>
+    `,
+
+    "engine manager": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose MPC (Mathematics, Physics, Chemistry).</p>
+        <p>Higher Education: B.Tech in Mechanical or Electrical Engineering.</p>
+        <p>Entry Path: RRB SSE (Senior Section Engineer) Exam.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Locomotive Engine Management</li>
+            <li>Diesel Engine Maintenance</li>
+            <li>Electric Train Engineering</li>
+            <li>Railway Operations Management</li>
+        </ul>
+    `,
+
+    "station manager": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Any Stream.</p>
+        <p>Higher Education: BBA, MBA, or a Bachelor's in Railway Management.</p>
+        <p>Entry Path: RRB SM (Station Master) Exam.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Railway Operations</li>
+            <li>Passenger Services</li>
+            <li>Freight & Cargo Management</li>
+            <li>Emergency Handling</li>
+        </ul>
+    `,
+
+    "railway panel manager": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Any Stream.</p>
+        <p>Higher Education: BBA, MBA, or a Bachelor's in Transport Management.</p>
+        <p>Entry Path: RRB NTPC (Non-Technical Popular Categories) Exam.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Railway Governance</li>
+            <li>Scheduling & Planning</li>
+            <li>Budgeting & Resource Allocation</li>
+            <li>Railway Administration</li>
+        </ul>
+    `,
+
+    "ticket checker": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose Any Stream.</p>
+        <p>Higher Education: Any Bachelor's degree (preferred but not mandatory).</p>
+        <p>Entry Path: RRB TC (Ticket Collector) Exam.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Onboard Ticket Checking</li>
+            <li>Station Ticket Verification</li>
+            <li>Passenger Assistance</li>
+            <li>Fine Collection & Fraud Prevention</li>
+        </ul>
+    `,
+
+    "electric site manager": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose MPC (Mathematics, Physics, Chemistry).</p>
+        <p>Higher Education: Diploma or B.Tech in Electrical Engineering.</p>
+        <p>Entry Path: RRB JE (Junior Engineer) or SSE Exam.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Power Distribution</li>
+            <li>Railway Electrification</li>
+            <li>Substation Maintenance</li>
+            <li>Electrical Safety & Inspections</li>
+        </ul>
+    `,
+ "professor": `
+        <h3>Education Path:</h3>
+        <p>Intermediate (10+2): Choose a relevant subject stream based on your field of interest.</p>
+        <p>Undergraduate Degree: Earn a Bachelor's degree (B.Sc., B.A., B.Com., B.Tech, etc.).</p>
+        <p>Postgraduate Degree: Obtain a Master's degree (M.Sc., M.A., M.Com., M.Tech, etc.).</p>
+        <p>Ph.D.: Mandatory for a full-time professor role.</p>
+        <p>Experience: Minimum of 8-10 years in teaching/research.</p>
+        <p>Qualifying Exams: UGC-NET, SET, GATE (for technical fields).</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Engineering & Technology</li>
+            <li>Medical Sciences</li>
+            <li>Humanities & Social Sciences</li>
+            <li>Law & Political Science</li>
+            <li>Mathematics & Statistics</li>
+            <li>Computer Science & AI</li>
+            <li>Physics & Chemistry</li>
+            <li>Management & Business Studies</li>
+        </ul>
+    `,
+    "assistant professor": `
+        <h3>Education Path:</h3>
+        <p>In Intermediate (10+2): Choose any relevant stream based on your subject of interest (Science, Commerce, Arts).</p>
+        <p>Undergraduate Degree: Pursue a Bachelor's degree (B.Sc., B.A., B.Com., B.Tech, etc.).</p>
+        <p>Postgraduate Degree: Obtain a Master’s degree (M.Sc., M.A., M.Com., M.Tech, etc.).</p>
+        <p>Ph.D.: A Ph.D. is preferred or required for higher positions.</p>
+        <p>Qualifying Exams: UGC-NET, SET, GATE (for engineering), etc.</p>
+        <h3>Specializations:</h3>
+        <ul>
+            <li>Engineering & Technology</li>
+            <li>Computer Science</li>
+            <li>Mathematics</li>
+            <li>Physics</li>
+            <li>Management Studies</li>
+            <li>Medical Sciences</li>
+            <li>Law</li>
+            <li>Social Sciences</li>
+        </ul>
+    `
+    };
+    
+    const ambitionData = {
+      "software engineer": {
+          educationPath: `
+              <h3>Education Path:</h3>
+              <p><b>Intermediate (10+2)</b>: Choose MPC (Mathematics, Physics, Chemistry).</p>
+              <p><b>Entrance Exams</b>: JEE, EAMCET, BITSAT.</p>
+              <p><b>Undergraduate</b>: B.Tech/B.E. in Computer Science, IT (4 years).</p>
+              <p><b>Postgraduate (Optional)</b>: M.Tech/M.S. (2 years).</p>
+          `,
+          specializations: `
+              <h3>Specializations & Salaries:</h3>
+              <table border="1" cellpadding="8">
+                  <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                  <tr><td>Artificial Intelligence</td><td>₹8-12</td><td>₹15-30</td><td>₹40+</td></tr>
+                  <tr><td>Cybersecurity</td><td>₹6-10</td><td>₹12-25</td><td>₹35+</td></tr>
+                  <tr><td>Software Development</td><td>₹5-9</td><td>₹10-20</td><td>₹30+</td></tr>
+                  <tr><td>Web Development</td><td>₹4-8</td><td>₹8-15</td><td>₹25+</td></tr>
+              </table>
+          `,
+          costEstimation: `
+              <h3>Cost Estimation :</h3>
+              <p>📚 Intermediate (Coaching + Schooling): ₹1-5 lakhs</p>
+              <p>🎓 B.Tech/B.E.: ₹5-15 lakhs</p>
+              <p>💡 Additional Certifications (Optional): ₹50,000 - 2 lakhs</p>
+              <p>🎓 Postgraduate (Optional): ₹2-10 lakhs</p>
+              <p><b>💰 Total Investment</b>: ₹6-20 lakhs (without PG), ₹8-30 lakhs (with PG).</p>
+              <p><b>⏳ Total Time</b>: 4-6 years depending on postgraduate studies.</p>
+          `
+      },
+      "assistant professor": {
+    educationPath: `
+        <h3>Education Path:</h3>
+        <p><b>Intermediate (10+2)</b>: Choose a relevant stream based on your subject of interest (Science, Commerce, Arts).</p>
+        <p><b>Undergraduate</b>: Bachelor's degree (B.Sc., B.A., B.Com., B.Tech., etc.) - 3 to 4 years.</p>
+        <p><b>Postgraduate</b>: Master’s degree (M.Sc., M.A., M.Com., M.Tech.) - 2 years.</p>
+        <p><b>Ph.D. (Optional but Recommended)</b>: 3 to 5 years.</p>
+        <p><b>Qualifying Exams</b>: UGC-NET, SET, GATE (for technical fields).</p>
+    `,
+    specializations: `
+        <h3>Specializations & Salaries:</h3>
+        <table border="1" cellpadding="8">
+            <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+            <tr><td>Engineering & Technology</td><td>₹6-9</td><td>₹12-18</td><td>₹25+</td></tr>
+            <tr><td>Computer Science</td><td>₹5-8</td><td>₹10-15</td><td>₹22+</td></tr>
+            <tr><td>Mathematics</td><td>₹4-7</td><td>₹8-12</td><td>₹18+</td></tr>
+            <tr><td>Physics</td><td>₹4-7</td><td>₹8-12</td><td>₹18+</td></tr>
+            <tr><td>Social Sciences</td><td>₹3-6</td><td>₹6-10</td><td>₹15+</td></tr>
+        </table>
+    `,
+    costEstimation: `
+        <h3>Cost Estimation :</h3>
+        <p>📚 Intermediate (Schooling + Coaching): ₹1-5 lakhs</p>
+        <p>🎓 Undergraduate (Bachelor's Degree): ₹3-10 lakhs</p>
+        <p>🎓 Postgraduate (Master's Degree): ₹2-8 lakhs</p>
+        <p>📜 Ph.D. (Optional but recommended): ₹3-15 lakhs</p>
+        <p><b>💰 Total Investment</b>: ₹6-20 lakhs (without Ph.D.), ₹10-35 lakhs (with Ph.D.).</p>
+        <p><b>⏳ Total Time</b>: 5-10 years depending on education level.</p>
+    `
+},
+"professor": {
+    educationPath: `
+        <h3>Education Path:</h3>
+        <p><b>Intermediate (10+2)</b>: Choose a relevant stream (Science, Commerce, Arts, or Engineering).</p>
+        <p><b>Undergraduate</b>: Bachelor's degree in chosen field (B.Sc., B.A., B.Com., B.Tech., etc.) - 3 to 4 years.</p>
+        <p><b>Postgraduate</b>: Master’s degree (M.Sc., M.A., M.Com., M.Tech.) - 2 years.</p>
+        <p><b>Ph.D. (Mandatory for Professorship)</b>: 3 to 5 years.</p>
+        <p><b>Experience Requirement</b>: Minimum of 8-10 years in teaching/research.</p>
+        <p><b>Qualifying Exams</b>: UGC-NET, SET, GATE (for technical fields).</p>
+    `,
+    specializations: `
+        <h3>Specializations & Salaries:</h3>
+        <table border="1" cellpadding="8">
+            <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+            <tr><td>Engineering & Technology</td><td>₹8-12</td><td>₹15-25</td><td>₹35+</td></tr>
+            <tr><td>Medical Sciences</td><td>₹10-15</td><td>₹20-35</td><td>₹50+</td></tr>
+            <tr><td>Humanities & Social Sciences</td><td>₹5-9</td><td>₹10-18</td><td>₹25+</td></tr>
+            <tr><td>Law & Political Science</td><td>₹6-10</td><td>₹12-20</td><td>₹30+</td></tr>
+            <tr><td>Mathematics & Statistics</td><td>₹6-10</td><td>₹12-18</td><td>₹28+</td></tr>
+        </table>
+    `,
+    costEstimation: `
+        <h3>Cost Estimation :</h3>
+        <p>📚 Intermediate (Schooling + Coaching): ₹1-5 lakhs</p>
+        <p>🎓 Undergraduate (Bachelor's Degree): ₹3-10 lakhs</p>
+        <p>🎓 Postgraduate (Master's Degree): ₹2-8 lakhs</p>
+        <p>📜 Ph.D. (Mandatory): ₹3-15 lakhs</p>
+        <p>📜 Additional Research Work: ₹5-15 lakhs</p>
+        <p><b>💰 Total Investment</b>: ₹10-40 lakhs depending on university and specialization.</p>
+        <p><b>⏳ Total Time</b>: 8-12 years depending on research and experience.</p>
+    `
+},
+
+  
+      "doctor": {
+          educationPath: `
+              <h3>Education Path:</h3>
+              <p><b>Intermediate (10+2)</b>: Choose BiPC (Biology, Physics, Chemistry).</p>
+              <p><b>Entrance Exams</b>: NEET, AIIMS, JIPMER.</p>
+              <p><b>MBBS</b>: 5.5 years (including internship).</p>
+              <p><b>Specialization (Optional)</b>: MD/MS (3 years).</p>
+          `,
+          specializations: `
+              <h3>Specializations & Salaries:</h3>
+              <table border="1" cellpadding="8">
+                  <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                  <tr><td>Cardiology</td><td>₹12-20</td><td>₹25-40</td><td>₹50+</td></tr>
+                  <tr><td>Neurology</td><td>₹10-18</td><td>₹22-35</td><td>₹45+</td></tr>
+                  <tr><td>Dermatology</td><td>₹8-15</td><td>₹18-30</td><td>₹40+</td></tr>
+                  <tr><td>Orthopedics</td><td>₹10-17</td><td>₹20-35</td><td>₹45+</td></tr>
+              </table>
+          `,
+          costEstimation: `
+              <h3>Cost Estimation :</h3>
+              <p>📚 Intermediate (Coaching + Schooling): ₹2-6 lakhs</p>
+              <p>🎓 MBBS (Govt Colleges): ₹5-10 lakhs</p>
+              <p>🎓 MBBS (Private Colleges): ₹50-80 lakhs</p>
+              <p>🎓 Specialization (MD/MS): ₹10-30 lakhs</p>
+              <p><b>💰 Total Investment</b>: ₹10-50 lakhs (Govt), ₹50-1.2 Cr (Private).</p>
+              <p><b>⏳ Total Time</b>: 5.5 - 8.5 years depending on specialization.</p>
+          `
+      },
+  
+      "ips": {
+          educationPath: `
+              <h3>Education Path:</h3>
+              <p><b>Intermediate (10+2)</b>: Any stream.</p>
+              <p><b>Degree</b>: Bachelor's degree in any discipline (3-4 years).</p>
+              <p><b>Entrance Exam</b>: UPSC Civil Services Examination.</p>
+              <p><b>Training</b>: Sardar Vallabhbhai Patel National Police Academy.</p>
+          `,
+          specializations: ``,
+          costEstimation: `
+              <h3>Cost Estimation for Parents:</h3>
+              <p>📚 College Degree: ₹2-10 lakhs</p>
+              <p>📖 UPSC Coaching (Optional): ₹1-5 lakhs</p>
+              <p><b>💰 Total Investment</b>: ₹3-15 lakhs.</p>
+              <p><b>⏳ Total Time</b>: 5-6 years.</p>
+          `
+      },
+  
+      "teacher": {
+          educationPath: `
+              <h3>Education Path:</h3>
+              <p><b>Intermediate (10+2)</b>: Choose subjects relevant to teaching.</p>
+              <p><b>Degree</b>: B.Ed. (for school teachers), UGC-NET (for college professors).</p>
+              <p><b>Entrance Exam</b>: TET, CTET, UGC-NET.</p>
+          `,
+          specializations: ``,
+          costEstimation: `
+              <h3>Cost Estimation :</h3>
+              <p>📚 College Degree: ₹1-5 lakhs</p>
+              <p>📖 B.Ed./UGC-NET Coaching: ₹50,000 - 2 lakhs</p>
+              <p><b>💰 Total Investment</b>: ₹1.5-7 lakhs.</p>
+              <p><b>⏳ Total Time</b>: 4-5 years.</p>
+          `
+      },
+      "bank manager": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Any stream (Commerce preferred).</p>
+            <p><b>Undergraduate</b>: B.Com/BBA/B.Economics or related field (3 years).</p>
+            <p><b>Postgraduate (Optional)</b>: MBA in Finance/Banking (2 years).</p>
+            <p><b>Exams</b>: IBPS PO, SBI PO, RBI Grade B.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Public Sector Banking</td><td>₹6-10</td><td>₹12-20</td><td>₹30+</td></tr>
+                <tr><td>Private Banking</td><td>₹8-12</td><td>₹15-25</td><td>₹40+</td></tr>
+                <tr><td>Investment Banking</td><td>₹10-20</td><td>₹25-50</td><td>₹80+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation:</h3>
+            <p>📚 Undergraduate: ₹2-8 lakhs</p>
+            <p>🎓 MBA (Optional): ₹5-20 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹3-25 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-5 years depending on postgraduate studies.</p>
+        `
+    },
+
+    "army": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Any stream (Science preferred for technical roles).</p>
+            <p><b>Entry Exams</b>: NDA, CDS, AFCAT.</p>
+            <p><b>Training</b>: NDA (3 years) or IMA (1 year after graduation).</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Branch</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Infantry</td><td>₹7-10</td><td>₹12-20</td><td>₹25+</td></tr>
+                <tr><td>Artillery</td><td>₹7-12</td><td>₹15-25</td><td>₹30+</td></tr>
+                <tr><td>Engineering Corps</td><td>₹8-14</td><td>₹18-30</td><td>₹40+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 NDA Training: Free (Govt Sponsored)</p>
+            <p>🎓 Graduation (For CDS Entry): ₹2-10 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹0-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-4 years.</p>
+        `
+    },
+
+    "pilot": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: MPC (Mathematics, Physics, Chemistry).</p>
+            <p><b>Entrance Exams</b>: IGRUA, NDA (for Air Force), DGCA CPL.</p>
+            <p><b>Commercial Pilot Training</b>: 1-2 years.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Specialization</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Commercial Pilot</td><td>₹12-20</td><td>₹25-40</td><td>₹50+</td></tr>
+                <tr><td>Military Pilot</td><td>₹10-18</td><td>₹22-35</td><td>₹45+</td></tr>
+                <tr><td>Chartered Flights</td><td>₹15-25</td><td>₹30-50</td><td>₹60+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 Intermediate (Coaching + Schooling): ₹2-5 lakhs</p>
+            <p>🎓 Commercial Pilot Training: ₹25-50 lakhs</p>
+            <p>✈️ Type-Rating (Aircraft Specific Training): ₹10-20 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹35-75 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-6 years.</p>
+        `
+    },
+
+    "navy": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: MPC (Mathematics, Physics, Chemistry).</p>
+            <p><b>Entry Exams</b>: NDA (for Officers), CDS, INET.</p>
+            <p><b>Training</b>: Indian Naval Academy (INA) - 3-4 years.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Branch</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Navigation & Warfare</td><td>₹8-12</td><td>₹15-25</td><td>₹35+</td></tr>
+                <tr><td>Technical Branch</td><td>₹9-14</td><td>₹18-30</td><td>₹40+</td></tr>
+                <tr><td>Submarine Service</td><td>₹10-16</td><td>₹20-35</td><td>₹45+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 NDA/INA Training: Free (Govt Sponsored)</p>
+            <p>🎓 Graduation (For CDS Entry): ₹2-10 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹0-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 4-5 years.</p>
+        `
+    },
+    "rail pilot": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Science Stream (MPC Preferred).</p>
+            <p><b>Diploma/Degree</b>: Diploma in Mechanical/Electrical Engineering or B.Tech in Railway Engineering.</p>
+            <p><b>Exams</b>: RRB ALP (Assistant Loco Pilot) Exam.</p>
+            <p><b>Training</b>: Railway Training Institutes (6-12 months).</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Position</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Assistant Loco Pilot</td><td>₹4-6</td><td>₹8-12</td><td>₹15+</td></tr>
+                <tr><td>Loco Pilot</td><td>₹6-10</td><td>₹12-18</td><td>₹25+</td></tr>
+                <tr><td>Chief Loco Inspector</td><td>₹10-15</td><td>₹20-30</td><td>₹35+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation:</h3>
+            <p>📚 Diploma/B.Tech: ₹2-10 lakhs</p>
+            <p>🚆 Railway Training: Free (Govt Sponsored)</p>
+            <p><b>💰 Total Investment</b>: ₹2-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-5 years.</p>
+        `
+    },
+
+    "station manager": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Any Stream (Commerce/Science preferred).</p>
+            <p><b>Undergraduate</b>: BBA/B.Com/B.Tech in Railway Management or Transport Engineering.</p>
+            <p><b>Exams</b>: RRB NTPC, Group B/C Exams.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Position</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Assistant Station Manager</td><td>₹5-8</td><td>₹10-15</td><td>₹20+</td></tr>
+                <tr><td>Station Master</td><td>₹6-10</td><td>₹12-20</td><td>₹25+</td></tr>
+                <tr><td>Divisional Manager</td><td>₹8-12</td><td>₹15-25</td><td>₹30+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 Undergraduate: ₹3-10 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹3-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-4 years.</p>
+        `
+    },
+
+    "railway panel manager": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Any Stream (Science/Commerce preferred).</p>
+            <p><b>Undergraduate</b>: BBA/B.Com in Transport Management or B.Tech in Railway Engineering.</p>
+            <p><b>Exams</b>: RRB NTPC, RRB Group A/B.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Position</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Junior Panel Manager</td><td>₹5-8</td><td>₹10-15</td><td>₹20+</td></tr>
+                <tr><td>Senior Panel Manager</td><td>₹6-10</td><td>₹12-20</td><td>₹25+</td></tr>
+                <tr><td>Divisional Railway Manager</td><td>₹8-12</td><td>₹15-25</td><td>₹30+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation:</h3>
+            <p>📚 Undergraduate: ₹3-10 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹3-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-4 years.</p>
+        `
+    },
+
+    "ticket checker": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Any Stream.</p>
+            <p><b>Diploma (Optional)</b>: Diploma in Transport Management.</p>
+            <p><b>Exams</b>: RRB TC (Ticket Collector) Exam.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Position</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Ticket Collector</td><td>₹4-6</td><td>₹8-12</td><td>₹15+</td></tr>
+                <tr><td>Senior Ticket Examiner</td><td>₹6-10</td><td>₹12-18</td><td>₹25+</td></tr>
+                <tr><td>Chief Ticket Inspector</td><td>₹8-12</td><td>₹15-25</td><td>₹30+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 Intermediate/Diploma: ₹1-5 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹1-5 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 1-3 years.</p>
+        `
+    },
+
+    "electric site manager": {
+        educationPath: `
+            <h3>Education Path:</h3>
+            <p><b>Intermediate (10+2)</b>: Science Stream (MPC Preferred).</p>
+            <p><b>Diploma/Degree</b>: Diploma in Electrical Engineering or B.Tech in Electrical & Electronics Engineering.</p>
+            <p><b>Exams</b>: RRB JE, RRB SSE.</p>
+        `,
+        specializations: `
+            <h3>Specializations & Salaries:</h3>
+            <table border="1" cellpadding="8">
+                <tr><th>Position</th><th>Starting Salary (LPA)</th><th>Mid-Level (5-10 yrs)</th><th>High-Level (10+ yrs)</th></tr>
+                <tr><td>Junior Engineer</td><td>₹5-8</td><td>₹10-15</td><td>₹20+</td></tr>
+                <tr><td>Senior Section Engineer</td><td>₹7-12</td><td>₹15-25</td><td>₹30+</td></tr>
+                <tr><td>Divisional Engineer</td><td>₹8-15</td><td>₹18-30</td><td>₹40+</td></tr>
+            </table>
+        `,
+        costEstimation: `
+            <h3>Cost Estimation :</h3>
+            <p>📚 Diploma/B.Tech: ₹2-10 lakhs</p>
+            <p><b>💰 Total Investment</b>: ₹2-10 lakhs.</p>
+            <p><b>⏳ Total Time</b>: 3-5 years.</p>
+        `
+    }
+
+
+  };
+    
+  
+      // Generate Roadmap Graph
+      if (roadmaps[ambition]) {
+          let mermaidCode = `graph TD;\n`;
+          roadmaps[ambition].forEach((step, index) => {
+              if (index < roadmaps[ambition].length - 1) {
+                  mermaidCode += `    step${index}[\"${step}\"] --> step${index + 1}[\"${roadmaps[ambition][index + 1]}\"]\n`;
+              }
+          });
+  
+          roadmapDiv.innerHTML = `<div class="mermaid">${mermaidCode}</div>`;
+          mermaid.run();
+  
+          // Show ambition image if available
+          if (images[ambition]) {
+              ambitionImageDiv.innerHTML = `<img src="${images[ambition]}" alt="${ambition}" class="ambition-img">`;
+          }
+  
+          // Show detailed information
+          if (details[ambition]) {
+              ambitionDetailsDiv.innerHTML = details[ambition];
+          }
+          const videoContainer = document.getElementById("video-container");
+          if (videos[ambition]) {
+              videoContainer.innerHTML = `<h3>Related Video:</h3><iframe src="${videos[ambition]}" frameborder="0" allowfullscreen></iframe>`;
+          } else {
+              videoContainer.innerHTML = "";
+          }
+          if (ambitionData[ambition.toLowerCase()]) {
+            const data = ambitionData[ambition.toLowerCase()];
+            ambitionDetailDiv.innerHTML = `
+                ${data.educationPath}
+                ${data.specializations}
+                ${data.costEstimation}
+            `;
+        } else {
+            ambitionDetailDiv.innerHTML = `<p style="color: red;">No details available for this ambition.</p>`;
+        } 
+          
+      } else {
+          roadmapDiv.innerHTML = "<p>Roadmap not found. Try another ambition.</p>";
+      }
+  }
+  
+  </script>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+    table {
+      width: 100%; /* Makes the table take full width of the container */
+      border-collapse: collapse;
+      font-size: 18px; /* Increases text size */
+  }
+  
+  th, td {
+      padding: 12px; /* Adds more spacing inside cells */
+      border: 1px solid black;
+      text-align: left;
+  }
+    
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f4f6;
+      color: #333;
+      text-align: center;
+    }
+    .video-container {
+      margin-top: 20px;
+      text-align: center;
+  }
+  iframe {
+      width: 560px;
+      height: 315px;
+  }
+
+    header {
+      background-color: #4B0082;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 20px auto;
+      
+      padding: 20px;
+      border-radius: 8px;
+    }
+
+    input, button {
+      margin: 10px 0;
+      padding: 10px;
+      font-size: 16px;
+    }
+
+    .roadmap-container {
+      display: flex;
+    
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 100%;
+    }
+
+    .mermaid {
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      margin-top: 20px;
+      width: 200%;
+      font-size: 1.5em; /* Keeps elements in a single horizontal line */
+    }
+    
+    
+    
+
+    .ambition-img {
+      max-width: 500px;
+      height: auto;
+      border-radius: 8px;
+      margin-right: 20px;
+    }
+    .details-container {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: left;
+  }
+  
+  .details-container h3 {
+      color: #4a90e2;
+      margin-bottom: 10px;
+  }
+  
+  .details-container ul {
+      list-style: disc;
+      margin-left: 20px;
+  }
+  .testimonial-section {
+    background-color: #0a1633; /* Dark Blue */
+    color: #fff;
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.testimonial-section h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+}
+
+.testimonial-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-top: 20px;
+}
+
+.testimonial-btn {
+    background-color: #d9534f;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2em;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+
+
+.testimonial-video iframe {
+    border-radius: 8px;
+}
+.testimonials {
+  text-align: center;
+  padding: 40px;
+  background: #f8f9fa;
+}
+.testimonial-container {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.testimonial-card {
+  background: #004080;
+  color: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 250px;
+  text-align: center;
+}
+.testimonial-card img {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+.vision-mission {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  background: #f8f9fa;
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+.vision, .mission {
+  flex: 1;
+  text-align: center;
+  background: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+/*meeting*/
+
+.meeting-section {
+  width: 100%;  /* Full width */
+  background: #4B0082;  /* Dark purple */
+  padding: 20px 0;  /* Spacing */
+  color: white;
+  text-align: center;
+  font-size: 22px;
+  font-weight: bold;
+}
+.meeting-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  max-width: 1200px;
+  margin: auto;
+}
+.meeting-container img {
+  width: 120px; /* Increased icon size */
+  height: 120px;
+}
+.meeting-button {
+  padding: 15px 30px;
+  font-size: 18px;
+  background: #28a745;
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+.meeting-button:hover {
+  background: #218838;
+}
+    footer {
+      background-color: #333;
+      color: #fff;
+      padding: 15px;
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Career Guidance for Students</h1>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/Services">Services</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+  </div>
+</header>
+<div class="testimonial-section">
+  <h2>Importance of Career Guidance for Students</h2>
+  <p>As students transition from high school to college or university, the question of what career path to follow looms large. Choosing a career can be overwhelming, especially if students are unsure of their strengths, interests, and skills. That’s where career guidance comes in. Career guidance is a process that helps students identify their strengths, interests, and skills and explore potential career paths. This blog delves into the importance of career guidance for students and how it can help them make informed decisions about their future</p>
+
+  <div class="testimonial-content">
+     
+      <div class="testimonial-video">
+          <iframe width="500" height="280" src="https://www.youtube.com/embed/qaCBy1PvzPk" 
+              title="Career Success Stories" frameborder="0" allowfullscreen></iframe>
+      </div>
+  </div>
+</div>
+
+<div class="container">
+    <h1>GUIDE YOUR CARRIER</h1>
+    <p>Enter your ambition to see the career roadmap:</p>
+    <input type="text" id="ambition" placeholder="E.g., Software Engineer">
+    <button onclick="generateRoadmap()">GUIDE</button>
+    <div class="roadmap-container">
+      <div id="ambitionImage"></div>
+      <div id="roadmap"></div>
+    
+  </div>
+  <div id="ambitionDetails" class="details-container"></div>
+  <div id="ambitionDetail" class="ambitionData-container"></div>
+  <div id="video-container" class="video-container"></div>
+  <div class="video-container">
+    <h2>Stream Selection</h2>
+    <iframe src="https://www.youtube.com/embed/YWVxasaOnNs" frameborder="0" allowfullscreen></iframe>
+</div>
+</div>
+<div class="meeting-section">
+  <div class="meeting-container">
+      <img src="static/images/googlemeet.jpg" alt="Google Meet">
+      <p>Join the meeting if you have doubts (6:00 PM - 8:00 PM).If any issues cotact us to our phone no: 9948794836</p>
+      <a href="https://meet.google.com/your-meeting-link" target="_blank" class="meeting-button">Join Meeting</a>
+  </div>
+</div>
+<section class="testimonials">
+  <h2>What Our Clients Say</h2>
+  <div class="testimonial-container">
+      <div class="testimonial-card">
+          <img src="static/images/like-picaai.png" alt="Client 1">
+          <h3>MOHAMMAD LIKE</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>I'm LIKE, a recent graduate with two years of work experience, sharing insights about my career transition.</p>
+      </div>
+      <div class="testimonial-card">
+          <img src="static/images/neeraj-picaai.png" alt="Client 2">
+          <h3>CH NEERAJ</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>I found guidance in navigating career confusion through expert counseling. Assessments were smooth and insightful.</p>
+      </div>
+      <div class="testimonial-card">
+          <img src="static/images/prudhvi.jpg" alt="Client 3">
+          <h3>L PRUDHVI</h3>
+          <p>⭐⭐⭐⭐⭐</p>
+          <p>This website helped me identify strengths and growth areas, offering valuable insights for my professional journey.</p>
+      </div>
+  </div>
+</section>
+<section class="vision-mission-section">
+  <div class="container">
+      <div class="vision-mission">
+          <div class="vision">
+              <img src="static/images/vision1.jpg" alt="Vision Icon">
+              <h3>VISION</h3>
+              <p>To help every student and industry executive make the right decision pertaining to educational and professional career choices through a scientifically driven but empathetically addressed methodology aimed at long-term career success and happiness.</p>
+          </div>
+          <div class="mission">
+              <img src="static/images/mission.jpg" alt="Mission Icon">
+              <h3>MISSION</h3>
+              <p>To create an impact on the lives of at least 10 million individuals in the next 10 years, by creating value in their academic and professional endeavors by serving them through scientific counseling and guidance.</p>
+          </div>
+      </div>
+  </div>
+</section>
+<footer>
+  <p>Contact us at: career@guidance.com</p>
+</footer>
+
+</body>
+</html>

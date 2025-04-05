@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Career Guidance System for students, parents, and job seekers to make informed career choices.">
+  <title>Career Guidance System</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      background-color: #f3f4f6;
+      color: #333;
+    }
+
+    header {
+      background-color: #4B0082;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      font-size: 1.8em;
+      font-weight: bold;
+    }
+
+    .nav-links {
+      margin-top: 10px;
+      font-size: 0.9em;
+    }
+
+    .nav-links a {
+      color: #fff;
+      margin: 0 15px;
+      text-decoration: none;
+    }
+
+    .nav-links a:hover {
+      text-decoration: underline;
+    }
+
+    .container {
+      flex: 1;
+      max-width: 800px;
+      margin: 20px auto;
+      text-align: center;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .category-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: 20px;
+    }
+
+    .box {
+      float: left;
+      width: 33.33%; /* three boxes */
+      padding: 20px;
+    }
+
+    .category {
+      background-color: #f9f9f9;
+      border-radius: 8px;
+      padding: 20px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .category h3 {
+      margin-bottom: 10px;
+      color: #4a90e2;
+    }
+
+    .category button {
+      margin-top: 10px;
+      padding: 10px 20px;
+      border: none;
+      background-color: #4B0082;
+      color: white;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1em;
+    }
+
+    .category button:hover {
+      background-color:#4B0082;
+    }
+
+    .designed-for-everyone {
+      text-align: center;
+      margin: 40px auto;
+      max-width: 1200px;
+    }
+
+    .designed-for-everyone h2 {
+      font-size: 2em;
+      color: #102a43;
+      margin-bottom: 20px;
+    }
+
+    .designed-cards {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 250px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+
+    .card img {
+      width: 100%;
+      border-bottom: 3px solid #4a90e2;
+    }
+
+    .card-content {
+      padding: 15px;
+    }
+
+    .card-content h3 {
+      font-size: 1.2em;
+      color: #102a43;
+    }
+    .career-counseling {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      max-width: 1200px;
+      margin: 40px auto;
+      background-color: #fff;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .career-counseling img {
+      width: 40%;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .career-content {
+      flex: 1;
+    }
+
+    .career-content h2 {
+      font-size: 1.8em;
+      color: #102a43;
+      margin-bottom: 10px;
+    }
+
+    .career-content p {
+      font-size: 1em;
+      color: #333;
+    }
+    .video-testimonials {
+      max-width: 1200px;
+      margin: 40px auto;
+      text-align: center;
+    }
+
+    .video-testimonials h2 {
+      font-size: 2em;
+      color: #102a43;
+      margin-bottom: 20px;
+    }
+
+    .video-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
+    }
+
+    .video-card {
+      background-color: #fff;
+      border-radius: 10px;
+      overflow: hidden;
+      width: 300px;
+      text-align: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .video-card iframe {
+      width: 100%;
+      height: 180px;
+      border: none;
+    }
+
+    .video-content {
+      padding: 15px;
+    }
+
+    .video-content h3 {
+      font-size: 1.2em;
+      color: #102a43;
+    }
+
+    .video-content .language-tag {
+      background-color: #fbc02d;
+      color: #333;
+      padding: 5px;
+      font-size: 0.9em;
+      display: inline-block;
+      border-radius: 5px;
+      margin-top: 5px;
+    }
+    .career-advantages {
+      max-width: 1200px;
+      margin: 40px auto;
+      display: flex;
+      align-items: center;
+      background-color: #fff;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .career-advantages img {
+      width: 40%;
+      border-radius: 10px;
+      margin-right: 20px;
+    }
+
+    .career-advantages-content {
+      flex: 1;
+    }
+
+    .career-advantages-content h2 {
+      font-size: 1.8em;
+      color: #102a43;
+      margin-bottom: 10px;
+    }
+
+    .career-advantages-content p {
+      font-size: 1em;
+      color: #333;
+    }
+    /*vision*/
+    .vision-mission {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      background: #f8f9fa;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+    .vision, .mission {
+      flex: 1;
+      text-align: center;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    }    
+
+    footer {
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      padding: 15px;
+      font-size: 0.8em;
+    }
+
+    footer a {
+      color: #4a90e2;
+      text-decoration: none;
+    }
+
+    footer a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      .box {
+        width: 100%; /* Stack boxes on smaller screens */
+      }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Career Guidance System</h1>
+  <div class="nav-links">
+    <a href="/">Home</a>
+    <a href="/Services">Services</a>
+    <a href="/about">About</a>
+    <a href="/privacy">Privacy Policy</a>
+    <a href="/contact">Contact</a>
+  </div>
+</header>
+
+<section id="home" class="container">
+  <h2>Find Your Perfect Career Path</h2>
+  <p>Guidance for students, parents, and job seekers to make informed career choices.</p>
+</section>
+
+<section id="categories" class="category-container">
+  <div class="box">
+    <div class="category">
+      <h3>For Students</h3>
+      <p>Explore career options, skill-building resources, and education paths.</p>
+      <button onclick="location.href='/student'">Learn More</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="category">
+      <h3>For Parents</h3>
+      <p>Understand career trends and help your child choose the right path.</p>
+      <button onclick="location.href='/parent'">Learn More</button>
+    </div>
+  </div>
+  <div class="box">
+    <div class="category">
+      <h3>For Job Seekers</h3>
+      <p>Find job opportunities, improve your resume, and get interview tips.</p>
+      <button onclick="window.location.href='/add_resume'">Learn More</button>
+    </div>
+  </div>
+</section>
+
+<section class="designed-for-everyone">
+  <h2>Designed for Everyone with a Big Dream</h2>
+  <div class="designed-cards">
+    <div class="card"><img src="static/student.jpeg" alt="Students"><div class="card-content"><h3>8th - 12th Std Students</h3></div></div>
+    <div class="card"><img src="static/graduate.jpg" alt="UG-PG"><div class="card-content"><h3>UG - PG Students</h3></div></div>
+    <div class="card"><img src="static/working.jpeg" alt="Working"><div class="card-content"><h3>Working Professionals</h3></div></div>
+    <div class="card"><img src="static/executives.jpeg" alt="Executives"><div class="card-content"><h3>Executives with Career Break</h3></div></div>
+  </div>
+</section>
+<section class="career-counseling">
+  <img src="static/CareerCounseling.jpg" alt="Career Counseling">
+  <div class="career-content">
+    <h2>What Can You Gain from Career Counselling ?</h2>
+    <p>Career counselling can be a transformative journey in discovering your career choices. Here's what you can expect from career counselling in our website, helping you explore your options with clarity and confidence. Through personalized assessments, you'll uncover your strengths and interests, while professional counsellors offer insights into current industry trends and educational pathways. With their expertise, you'll confidently explore diverse career paths and make informed decisions that align with your ambitions.</p>
+  </div>
+</section>
+<section class="video-testimonials">
+  <h2>Listen To People Just Like You</h2>
+  <div class="video-grid">
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/ueEOngDY268" allowfullscreen></iframe>
+      <div class="video-content">
+        <h3>Student (10th Std)</h3>
+        <span class="language-tag">English</span>
+      </div>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/-KNIjviJXNU" allowfullscreen></iframe>
+      <div class="video-content">
+        <h3>Graduate (UG)</h3>
+        <span class="language-tag">English</span>
+      </div>
+    </div>
+    <div class="video-card">
+      <iframe src="https://www.youtube.com/embed/O3m14PVOq_g" allowfullscreen></iframe>
+      <div class="video-content">
+        <h3>Working Professional</h3>
+        <span class="language-tag">English</span>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="career-advantages">
+  <img src="coding/static/career-counselling.jpg" alt="Career Advantages">
+  <div class="career-advantages-content">
+    <h2>Advantages of Career Counselling </h2>
+    <p>Charting your career path can feel overwhelming, but career counselling offers valuable direction and support. Here are the top advantages of seeking career counselling in Noida to help you achieve your professional goals.</p><br><br>
+
+      <p><b>Increased Self-Awareness:</b> Career counselling helps you identify your strengths, interests, and values, giving you a clearer sense of direction. This self-awareness boosts your confidence, enabling you to make informed career choices.</p><br>
+      
+      <p><b>Exploration of Career Options:</b> Counsellors guide you in exploring diverse career options that align with your skills and aspirations. They provide insights into various fields, helping you discover opportunities you might not have considered.</p><br>
+      
+      <p><b> Personalized Career Plan:</b> Career counsellors in Noida work with you to develop a personalized career plan. This structured roadmap highlights actionable steps to reach your goals, keeping you focused and motivated along the way.</p><br>
+      
+      <P><b>Overcoming Career Obstacles:</b> Whether you're dealing with a career change, skill gaps, or job market
+      
+      uncertainties, career counselling provides strategies to tackle these challenges. With expert advice, you'll enhance your resilience and adaptability in today's fast-paced job market.</p>
+  </div>
+</section>
+<section class="vision-mission-section">
+  <div class="container">
+      <div class="vision-mission">
+          <div class="vision">
+              <img src="coding/static/images/vision1.jpg" alt="Vision Icon">
+              <h3>VISION</h3>
+              <p>To help every student and industry executive make the right decision pertaining to educational and professional career choices through a scientifically driven but empathetically addressed methodology aimed at long-term career success and happiness.</p>
+          </div>
+          <div class="mission">
+              <img src="coding/static/images/mission.jpg" alt="Mission Icon">
+              <h3>MISSION</h3>
+              <p>To create an impact on the lives of at least 10 million individuals in the next 10 years, by creating value in their academic and professional endeavors by serving them through scientific counseling and guidance.</p>
+          </div>
+      </div>
+  </div>
+</section>
+<footer>
+  <p>Contact us at: career@guidance.com</p>
+  <p>&copy; 2025 Career Guidance System. All rights reserved. <a href="/privacy">Privacy Policy</a></p>
+</footer>
+
+</body>
+</html>
